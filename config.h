@@ -12,7 +12,6 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "DejaVuSansMNerdFontMono:size=9", "TwitterColorEmoji:pixelsize=14:antialias=true:autohint=true" };
-static char dmenufont[]             = "LinuxBiolinum:size=11";
 static char termpgm[]               = "alacritty";
 static char normbgcolor[]           = "#3c5182";
 static char normbordercolor[]       = "#666666";
@@ -49,18 +48,18 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class    instance   title      tags mask isfloat isterm noswallow monitor */
-	{ "Gimp",     NULL,    NULL,      1 << 8, 0, 0, 0, -1},
-	{ termpgm,    NULL,    NULL,      0, 0, 1, 0, -1},
-	{ NULL,       NULL,    "spterm",  SPTAG(0), 1, 1, 0, -1},
-	{ NULL,       NULL,    "spcalc",  SPTAG(1), 1, 1, 0, -1},
-	{ NULL,       NULL,    "sptrans", SPTAG(2), 1, 1, 0, -1},
-	{ "Firefox",  NULL,    NULL,      1 << 0, 0, 0, 0, 1},	 // 50,50,500,500,    borderpx },
-	{ "qutebrowser", NULL, NULL,      1 << 0, 0, 0, 0, 1},	 // 50,50,500,500,    borderpx },
-	{ "Chromium", NULL,    NULL,      1 << 0, 0, 0, 0, 1},	 // 50,50,500,500,    borderpx },
-	{ NULL,       NULL,    "qute-editor", 0, 1, 0, 0, -1},	 // 590,200,800,288,  borderpx },
-	{ "mgba",     NULL,    NULL,      0, 1, 0, 0, -1},			 // 1920+690,-1,-1,-1,borderpx },
-	{ NULL,       NULL,    "Graphics :)",0, 1, 0, 0, -1},
-	{ NULL,       NULL,    "fzf:",    0, 1, 1, 0, -1},			 // 810,250,300,300,  borderpx },
+	{ "Gimp",     NULL,    NULL,          1 << 8,   0, 0, 0, -1},
+	{ termpgm,    NULL,    NULL,          0,        0, 1, 0, -1},
+	{ NULL,       NULL,    "spterm",      SPTAG(0), 1, 1, 0, -1},
+	{ NULL,       NULL,    "spcalc",      SPTAG(1), 1, 1, 0, -1},
+	{ NULL,       NULL,    "sptrans",     SPTAG(2), 1, 1, 0, -1},
+	{ "Firefox",  NULL,    NULL,          1 << 0,   0, 0, 0,  1},
+	{ "qutebrowser", NULL, NULL,          1 << 0,   0, 0, 0,  1},
+	{ "Chromium", NULL,    NULL,          1 << 0,   0, 0, 0,  1},
+	{ NULL,       NULL,    "qute-editor", 0,        1, 0, 0, -1},
+	{ "mgba",     NULL,    NULL,          0,        1, 0, 0, -1},
+	{ NULL,       NULL,    "Graphics :)", 0,        1, 0, 0, -1},
+	{ NULL,       NULL,    "fzf:",        0,        1, 1, 0, -1},
 };
 
 /* layout(s) */
@@ -95,12 +94,7 @@ static const Layout layouts[] = {
 	{ MOD, XK_k, ACTION##stack, { .i = INC(-1) } }, \
 	{ MOD, XK_m, ACTION##stack, { .i = 0 } }, \
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[] = { termpgm, NULL };
 
 #include <X11/XF86keysym.h>
@@ -134,26 +128,23 @@ static Key keys[] = {
 	{ MODKEY,             XK_apostrophe, togglescratch, {.ui = 1}},
 	{ MODKEY,             XK_Return, spawn, {.v = termcmd}},
 	{ MODKEY | ShiftMask, XK_Return, togglescratch, {.ui = 0}},
-	{ MODKEY | ShiftMask, XK_space, cyclelayout, {.ui = -1}},
 	{ MODKEY,             XK_space, cyclelayout, {.ui = +1}},
+	{ MODKEY | ShiftMask, XK_space, cyclelayout, {.ui = -1}},
 
 	{ MODKEY,             XK_equal, incrgaps, {.i = +3}},
 	{ MODKEY,             XK_minus, incrgaps, {.i = -3}},
 	/* V is automatically bound above in STACKKEYS */
 	{ MODKEY,             XK_b, togglebar, {0}},
 	{ MODKEY,             XK_Escape, focusmon, {.i = +1}},
-	{ MODKEY | ShiftMask, XK_Escape, tagmon, {.i = +1}},
 	{ MODKEY,             XK_Left, tagmon, {.i = -1}},
 	{ MODKEY,             XK_Right, tagmon, {.i = +1}},
-	{ MODKEY,             XK_Up, focusstack, {.i = INC(-1)}},
-	{ MODKEY,             XK_Down, focusstack, {.i = INC(+1)}},
 	{ 0,                  XK_F13, xrdb, {.v = NULL}},
 	{ MODKEY,             XK_F1, togglefloating, {0}},
 	{ MODKEY | ShiftMask | Mod1Mask | ControlMask, XK_F12, xrdb, {.v = NULL}},
 };
 
 /* button definitions */
-/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+/* click can be ClkTagBar, ClkLtSymbol, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click      event mask   button   function      argument */
 	{ ClkWinTitle,   0,         Button2, zoom,         { 0 } },
