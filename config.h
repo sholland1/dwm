@@ -131,7 +131,6 @@ static Key keys[] = {
 	{ MODKEY | ShiftMask, XK_o, incnmaster, {.i = -1}},
 	{ MODKEY,             XK_a, togglegaps, {0}},
 	{ MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
-	{ MODKEY,             XK_f, togglefullscr, {0}},
 	{ MODKEY,             XK_h, setmfact, {.f = -0.025}},
 	{ MODKEY,             XK_l, setmfact, {.f = +0.025}},
 	{ MODKEY,             XK_t, togglescratch, {.ui = 2}},
