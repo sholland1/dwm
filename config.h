@@ -7,7 +7,6 @@ static const unsigned int gappih    = 30;       /* horiz inner gap between windo
 static const unsigned int gappiv    = 30;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 30;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -47,19 +46,19 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class    instance   title      tags mask isfloat isterm noswallow monitor */
-	{ "Gimp",     NULL,    NULL,          1 << 8,   0, 0, 0, -1},
-	{ termpgm,    NULL,    NULL,          0,        0, 1, 0, -1},
-	{ NULL,       NULL,    "spterm",      SPTAG(0), 1, 1, 0, -1},
-	{ NULL,       NULL,    "spcalc",      SPTAG(1), 1, 1, 0, -1},
-	{ NULL,       NULL,    "sptrans",     SPTAG(2), 1, 1, 0, -1},
-	{ "Firefox",  NULL,    NULL,          1 << 0,   0, 0, 0,  1},
-	{ "qutebrowser", NULL, NULL,          1 << 0,   0, 0, 0,  1},
-	{ "Chromium", NULL,    NULL,          1 << 0,   0, 0, 0,  1},
-	{ NULL,       NULL,    "qute-editor", 0,        1, 0, 0, -1},
-	{ "mgba",     NULL,    NULL,          0,        1, 0, 0, -1},
-	{ NULL,       NULL,    "Graphics :)", 0,        1, 0, 0, -1},
-	{ NULL,       NULL,    "fzf:",        0,        1, 1, 0, -1},
+	/* class    instance   title      tags mask isfloat monitor */
+	{ "Gimp",     NULL,    NULL,          1 << 8,   0, -1},
+	{ termpgm,    NULL,    NULL,          0,        0, -1},
+	{ NULL,       NULL,    "spterm",      SPTAG(0), 1, -1},
+	{ NULL,       NULL,    "spcalc",      SPTAG(1), 1, -1},
+	{ NULL,       NULL,    "sptrans",     SPTAG(2), 1, -1},
+	{ "Firefox",  NULL,    NULL,          1 << 0,   0,  1},
+	{ "qutebrowser", NULL, NULL,          1 << 0,   0,  1},
+	{ "Chromium", NULL,    NULL,          1 << 0,   0,  1},
+	{ NULL,       NULL,    "qute-editor", 0,        1, -1},
+	{ "mgba",     NULL,    NULL,          0,        1, -1},
+	{ NULL,       NULL,    "Graphics :)", 0,        1, -1},
+	{ NULL,       NULL,    "fzf:",        0,        1, -1},
 };
 
 /* layout(s) */
