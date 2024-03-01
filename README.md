@@ -17,7 +17,3 @@ This is suckless, mmmbud, the source code is the documentation! Check out [confi
 - swallow patch: if a program run from a terminal would make it inoperable, it temporarily takes its place to save space.
 - preserve on restart: Remember the monitor and tag of windows when restarting dwm.
 - focus on net active: Allow programs to request focus.
-
-## Please install `libxft-bgra`!
-
-This build of dwm does not block color emoji in the status/info bar, so you must install [libxft-bgra](https://aur.archlinux.org/packages/libxft-bgra/) from the AUR, which fixes a libxft color emoji rendering problem, otherwise dwm will crash upon trying to render one. Hopefully this fix will be in all libxft soon enough.
