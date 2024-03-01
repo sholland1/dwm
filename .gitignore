@@ -1,9 +1,10 @@
 .gitignore
 *.orig
 *.rej
+*.o
 larbs.pdf
 patches
-util.o
 dwm
-dwm.o
-drw.o
+Session.vim
+notes.txt
+.vscode/
