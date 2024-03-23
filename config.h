@@ -31,11 +31,13 @@ typedef struct {
 const char *spcmd1[] = { termpgm, "-t", "spterm", NULL };
 const char *spcmd2[] = { termpgm, "-t", "spcalc", "-e", "python", NULL };
 const char *spcmd3[] = { termpgm, "-t", "sptrans", "-e", "trans", "-I", "ja:en", NULL };
+const char *spcmd4[] = { termpgm, "-t", "spunits", "-e", "units", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",  spcmd1},
 	{"spcalc",  spcmd2},
 	{"sptrans", spcmd3},
+	{"spunits", spcmd4},
 };
 
 /* tagging */
@@ -52,6 +54,7 @@ static const Rule rules[] = {
 	{ NULL,       NULL,    "spterm",      SPTAG(0), 1, -1},
 	{ NULL,       NULL,    "spcalc",      SPTAG(1), 1, -1},
 	{ NULL,       NULL,    "sptrans",     SPTAG(2), 1, -1},
+	{ NULL,       NULL,    "spunits",     SPTAG(3), 1, -1},
 	{ "Firefox",  NULL,    NULL,          1 << 0,   0,  1},
 	{ "qutebrowser", NULL, NULL,          1 << 0,   0,  1},
 	{ "Chromium", NULL,    NULL,          1 << 0,   0,  1},
@@ -122,13 +125,14 @@ static Key keys[] = {
 	{ MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
 	{ MODKEY,             XK_h, setmfact, {.f = -0.025}},
 	{ MODKEY,             XK_l, setmfact, {.f = +0.025}},
-	{ MODKEY,             XK_t, togglescratch, {.ui = 2}},
 	{ MODKEY | ShiftMask, XK_q, quit, {0}},
-	{ MODKEY,             XK_apostrophe, togglescratch, {.ui = 1}},
 	{ MODKEY,             XK_Return, spawn, {.v = termcmd}},
-	{ MODKEY | ShiftMask, XK_Return, togglescratch, {.ui = 0}},
 	{ MODKEY,             XK_space, cyclelayout, {.ui = +1}},
 	{ MODKEY | ShiftMask, XK_space, cyclelayout, {.ui = -1}},
+	{ MODKEY | ShiftMask, XK_Return, togglescratch, {.ui = 0}},
+	{ MODKEY,             XK_apostrophe, togglescratch, {.ui = 1}},
+	{ MODKEY,             XK_t, togglescratch, {.ui = 2}},
+	{ MODKEY | ShiftMask, XK_u, togglescratch, {.ui = 3}},
 
 	{ MODKEY,             XK_equal, incrgaps, {.i = +3}},
 	{ MODKEY,             XK_minus, incrgaps, {.i = -3}},
