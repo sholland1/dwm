@@ -1097,32 +1097,32 @@ killclient(const Arg *arg)
 void
 loadxrdb()
 {
-  Display *display;
-  char * resm;
-  XrmDatabase xrdb;
-  char *type;
-  XrmValue value;
+	Display *display;
+	char * resm;
+	XrmDatabase xrdb;
+	char *type;
+	XrmValue value;
 
-  display = XOpenDisplay(NULL);
+	display = XOpenDisplay(NULL);
 
-  if (display != NULL) {
-    resm = XResourceManagerString(display);
+	if (display != NULL) {
+		resm = XResourceManagerString(display);
 
-    if (resm != NULL) {
-      xrdb = XrmGetStringDatabase(resm);
+		if (resm != NULL) {
+			xrdb = XrmGetStringDatabase(resm);
 
-      if (xrdb != NULL) {
-        XRDB_LOAD_COLOR("dwm.color0", normbordercolor);
-        XRDB_LOAD_COLOR("dwm.color8", selbordercolor);
-        XRDB_LOAD_COLOR("dwm.color0", normbgcolor);
-        XRDB_LOAD_COLOR("dwm.color4", normfgcolor);
-        XRDB_LOAD_COLOR("dwm.color0", selfgcolor);
-        XRDB_LOAD_COLOR("dwm.color4", selbgcolor);
-      }
-    }
-  }
+			if (xrdb != NULL) {
+				XRDB_LOAD_COLOR("dwm.color0", normbordercolor);
+				XRDB_LOAD_COLOR("dwm.color8", selbordercolor);
+				XRDB_LOAD_COLOR("dwm.color0", normbgcolor);
+				XRDB_LOAD_COLOR("dwm.color4", normfgcolor);
+				XRDB_LOAD_COLOR("dwm.color0", selfgcolor);
+				XRDB_LOAD_COLOR("dwm.color4", selbgcolor);
+			}
+		}
+	}
 
-  XCloseDisplay(display);
+	XCloseDisplay(display);
 }
 
 void
@@ -1530,7 +1530,7 @@ run(void)
 	XEvent ev;
 	/* main event loop */
 	XSync(dpy, False);
-    runDefaults();
+	runDefaults();
 	while (running && !XNextEvent(dpy, &ev))
 		if (handler[ev.type])
 			handler[ev.type](&ev); /* call handler */
@@ -1539,12 +1539,12 @@ run(void)
 void
 runDefaults(void)
 {
-    Arg layout1 = {.v = &layouts[3]};
-    Arg monitor = {.i = +1};
-    Arg layout2 = {.v = &layouts[4]};
-    setlayout(&layout1);
-    focusmon(&monitor);
-    setlayout(&layout2);
+	Arg layout1 = {.v = &layouts[3]};
+	Arg monitor = {.i = +1};
+	Arg layout2 = {.v = &layouts[4]};
+	setlayout(&layout1);
+	focusmon(&monitor);
+	setlayout(&layout2);
 }
 
 void
@@ -2349,12 +2349,12 @@ xerrorstart(Display *dpy, XErrorEvent *ee)
 void
 xrdb(const Arg *arg)
 {
-  loadxrdb();
-  int i;
-  for (i = 0; i < LENGTH(colors); i++)
-                scheme[i] = drw_scm_create(drw, colors[i], 3);
-  focus(NULL);
-  arrange(NULL);
+	loadxrdb();
+	int i;
+	for (i = 0; i < LENGTH(colors); i++)
+		scheme[i] = drw_scm_create(drw, colors[i], 3);
+	focus(NULL);
+	arrange(NULL);
 }
 
 void
@@ -2383,8 +2383,8 @@ main(int argc, char *argv[])
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display");
 	checkotherwm();
-        XrmInitialize();
-        loadxrdb();
+	XrmInitialize();
+	loadxrdb();
 	setup();
 #ifdef __OpenBSD__
 	if (pledge("stdio rpath proc exec", NULL) == -1)
