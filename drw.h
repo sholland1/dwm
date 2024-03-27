@@ -36,6 +36,7 @@ Fnt *drw_fontset_create(Drw* drw, const char *fonts[], size_t fontcount);
 void drw_fontset_free(Fnt* set);
 unsigned int drw_fontset_getwidth(Drw *drw, const char *text);
 void drw_font_getexts(Fnt *font, const char *text, unsigned int len, unsigned int *w, unsigned int *h);
+unsigned int drw_fontset_getwidth_clamp(Drw *drw, const char *text, unsigned int n);
 
 /* Colorscheme abstraction */
 void drw_clr_create(Drw *drw, Clr *dest, const char *clrname);

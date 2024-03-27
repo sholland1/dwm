@@ -102,7 +102,7 @@ static const char *termcmd[] = { termpgm, NULL };
 
 #include <X11/XF86keysym.h>
 #include "shiftview.c"
-static Key keys[] = {
+static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	STACKKEYS(MODKEY, focus)
 	STACKKEYS(MODKEY | ShiftMask, push)
@@ -149,7 +149,7 @@ static Key keys[] = {
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
+static const Button buttons[] = {
 	/* click      event mask   button   function      argument */
 	{ ClkWinTitle,   0,         Button2, zoom,         { 0 } },
 	{ ClkClientWin,  MODKEY,    Button1, movemouse,    { 0 } },
