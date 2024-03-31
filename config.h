@@ -48,20 +48,21 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class    instance   title      tags mask isfloat monitor */
-	{ "Gimp",     NULL,    NULL,          1 << 8,   0, -1},
-	{ termpgm,    NULL,    NULL,          0,        0, -1},
-	{ NULL,       NULL,    "spterm",      SPTAG(0), 1, -1},
-	{ NULL,       NULL,    "spcalc",      SPTAG(1), 1, -1},
-	{ NULL,       NULL,    "sptrans",     SPTAG(2), 1, -1},
-	{ NULL,       NULL,    "spunits",     SPTAG(3), 1, -1},
-	{ "Firefox",  NULL,    NULL,          1 << 0,   0,  1},
-	{ "qutebrowser", NULL, NULL,          1 << 0,   0,  1},
-	{ "Chromium", NULL,    NULL,          1 << 0,   0,  1},
-	{ NULL,       NULL,    "qute-editor", 0,        1, -1},
-	{ "mgba",     NULL,    NULL,          0,        1, -1},
-	{ NULL,       NULL,    "Graphics :)", 0,        1, -1},
-	{ NULL,       NULL,    "fzf:",        0,        1, -1},
+	/* class    instance   title          tags mask isfloat monitor float x,y,w,h */
+	{ "Gimp",     NULL,    NULL,          1 << 8,   0,      -1,     -1,-1,-1,-1},
+	{ termpgm,    NULL,    NULL,          0,        0,      -1,     -1,-1,-1,-1},
+	{ NULL,       NULL,    "spterm",      SPTAG(0), 1,      -1,     -1,-1,-1,-1},
+	{ NULL,       NULL,    "spcalc",      SPTAG(1), 1,      -1,     -1,-1,-1,-1},
+	{ NULL,       NULL,    "sptrans",     SPTAG(2), 1,      -1,     -1,-1,-1,-1},
+	{ NULL,       NULL,    "spunits",     SPTAG(3), 1,      -1,     -1,-1,-1,-1},
+	{ "Firefox",  NULL,    NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
+	{ "qutebrowser", NULL, NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
+	{ "Chromium", NULL,    NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
+	{ NULL,       NULL,    "qute-editor", 0,        1,      -1,     -1,-1,-1,-1},
+	{ "mgba",     NULL,    NULL,          0,        1,      -1,     -1,-1,-1,-1},
+	{ NULL,       NULL,    "Graphics :)", 0,        1,      -1,     -1,-1,-1,-1},
+	{ NULL,       NULL,    "fzf:",        0,        1,      -1,     -1,-1,-1,-1},
+	{ NULL,       NULL,    "fzf: system", 0,        1,      -1,     1920-220,20,200,200},
 };
 
 /* layout(s) */
