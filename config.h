@@ -144,6 +144,7 @@ static Key keys[] = {
 	{ MODKEY,             XK_Right, tagmon, {.i = +1}},
 	{ 0,                  XK_F13, xrdb, {.v = NULL}},
 	{ MODKEY,             XK_F1, togglefloating, {0}},
+	{ 0,                  XK_F11, togglefullscreen, {0}},
 	{ MODKEY | ShiftMask | Mod1Mask | ControlMask, XK_F12, xrdb, {.v = NULL}},
 };
 
