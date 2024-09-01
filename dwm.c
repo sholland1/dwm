@@ -327,6 +327,7 @@ applyrules(Client *c)
 	const Rule *r;
 	Monitor *m;
 	XClassHint ch = { NULL, NULL };
+	int isfloating_orig = c->isfloating;  // Store original floating state
 
 	if (c->isfloating) {
 		c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
@@ -334,7 +335,6 @@ applyrules(Client *c)
 	}
 
 	/* rule matching */
-	c->isfloating = 0;
 	c->tags = 0;
 	XGetClassHint(dpy, c->win, &ch);
 	class    = ch.res_class ? ch.res_class : broken;
@@ -360,6 +360,11 @@ applyrules(Client *c)
 				c->mon = m;
 		}
 	}
+
+	// Restore original floating state if no rule set it
+	if (!c->isfloating)
+		c->isfloating = isfloating_orig;
+
 	if (ch.res_class)
 		XFree(ch.res_class);
 	if (ch.res_name)
