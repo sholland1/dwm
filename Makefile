@@ -49,4 +49,7 @@ uninstall:
 		${DESTDIR}${PREFIX}/share/dwm/larbs.mom\
 		${DESTDIR}${MANPREFIX}/man1/dwm.1
 
-.PHONY: all options clean dist install uninstall
+debug: CFLAGS += -g -O0
+debug: clean dwm
+
+.PHONY: all options clean dist install uninstall debug

@@ -1,0 +1,67 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: gcc build active file",
+            "command": "make",
+            "args": ["debug"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Build using make"
+        },
+        {
+            "label": "start-xephyr",
+            "type": "shell",
+            "command": "./start-xephyr.sh",
+            "group": "none",
+            "problemMatcher": [],
+            "detail": "Start Xephyr on display :1"
+        },
+        {
+            "label": "stop-xephyr",
+            "type": "shell",
+            "command": "pkill Xephyr",
+            "group": "none",
+            "problemMatcher": [],
+            "detail": "Stop Xephyr on display :1"
+        },
+        {
+            "label": "start-xephyr-and-build",
+            "type": "shell",
+            "dependsOn": [
+                "start-xephyr",
+                "C/C++: gcc build active file"
+            ],
+            "dependsOrder": "sequence",
+            "group": "none",
+            "problemMatcher": [],
+            "detail": "Start Xephyr and build the project"
+        },
+        {
+            "label": "install",
+            "type": "shell",
+            "command": "sudo make install",
+            "args": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "group": "none",
+            "problemMatcher": [],
+            "detail": "Run sudo make install to install the program"
+        }
+    ]
+}
