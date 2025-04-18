@@ -1,6 +1,6 @@
 .TH DWM 1 dwm\-VERSION
 .SH NAME
-dwm \- dynamic window manager (Luke Smith <https://lukesmith.xyz>'s build)
+dwm \- dynamic window manager (Seth Holland's build)
 .SH SYNOPSIS
 .B dwm
 .RB [ \-v ]
@@ -25,15 +25,6 @@ top left corner.  The tags which are applied to one or more windows are
 indicated with an empty square in the top left corner.
 .P
 dwm draws a small border around windows to indicate the focus state.
-.P
-.I
-libxft-bgra
-should be installed for this build of dwm. Arch users may install it via the
-AUR. Color characters and emoji are enabled, but these will cause crashes
-without the fix
-.I
-libxft-bgra
-offers.
 .SH OPTIONS
 .TP
 .B \-v
@@ -60,86 +51,116 @@ click on a tag label applies that tag to the focused window.
 click on a tag label adds/removes that tag to/from the focused window.
 .SS Keyboard commands
 .TP
-.B Super\-Return
-Start terminal,
-.BR st(1).
-.TP
-.B Super\-d
-Spawn
-.BR dmenu(1)
-for launching other programs.
-.TP
-.B Super\-b
-Toggles bar on and off.
-.TP
-.B Super\-q
-Close focused window.
-.TP
-.B Super\-t/T
-Sets tiled/bstack layouts.
-.TP
-.B Super\-f
-Toggle fullscreen window.
-.TP
-.B Super\-F
-Toggle floating layout.
-.TP
-.B Super\-y/Y
-Sets Fibonacci spiral/dwinde layouts.
-.TP
-.B Super\-u/U
-Sets centered master layout.
-.TP
-.B Super\-i/I
-Sets centered master or floating master layouts.
-.TP
-.B Super\-space
-Zooms/cycles focused window to/from master area.
-.TP
 .B Super\-j/k
-Focus next/previous window.
+Focus next/previous window in stack.
+.TP
+.B Super\-m
+Focus master window in stack.
 .TP
 .B Super\-Shift\-j/k
-Move selected window down/up in stack.
+Push selected window down/up in stack.
 .TP
-.B Super\-o/O
-Increase/decrease number of windows in master area.
+.B Super\-Shift\-m
+Push selected window to master position in stack.
 .TP
-.B Super\-l
-Increase master area size.
+.B Super\-[1..9]
+View all windows with nth tag.
 .TP
-.B Super\-h
-Decrease master area size.
+.B Control\-Shift\-[1..9]
+View all windows with nth tag (alternative binding).
 .TP
-.B Super\-Shift\-space
-Toggle focused window between tiled and floating state.
+.B Super\-Control\-[1..9]
+Toggle view of all windows with nth tag.
 .TP
-.B Super\-Tab
-Toggles to the previously selected tags.
-.TP
-.B Super\-Shift\-[1..n]
+.B Super\-Shift\-[1..9]
 Apply nth tag to focused window.
 .TP
-.B Super\-Shift\-0
-Apply all tags to focused window.
-.TP
-.B Super\-Control\-Shift\-[1..n]
-Add/remove nth tag to/from focused window.
-.TP
-.B Super\-[1..n]
-View all windows with nth tag.
+.B Super\-Control\-Shift\-[1..9]
+Toggle nth tag on focused window.
 .TP
 .B Super\-0
 View all windows with any tag.
 .TP
-.B Super\-Control\-[1..n]
-Add/remove all windows with nth tag to/from the view.
+.B Super\-Shift\-0
+Apply all tags to focused window.
+.TP
+.B Super\-Tab
+Toggles to the previously selected tags.
+.TP
+.B Super\-x
+Close focused window.
+.TP
+.B Super\-o
+Increase number of windows in master area.
+.TP
+.B Super\-Shift\-o
+Decrease number of windows in master area.
+.TP
+.B Super\-a
+Toggle gaps on/off.
+.TP
+.B Super\-Shift\-a
+Reset gaps to default.
+.TP
+.B Super\-h
+Decrease master area size.
+.TP
+.B Super\-l
+Increase master area size.
 .TP
 .B Super\-Shift\-q
 Quit dwm.
 .TP
-.B Mod1\-Control\-Shift\-q
-Menu to refresh/quit/reboot/shutdown.
+.B Super\-Return
+Spawn terminal (alacritty).
+.TP
+.B Super\-space
+Cycle to next layout.
+.TP
+.B Super\-Shift\-space
+Cycle to previous layout.
+.TP
+.B Super\-Shift\-Return
+Toggle scratchpad terminal (alacritty).
+.TP
+.B Super\-apostrophe
+Toggle scratchpad calculator (python).
+.TP
+.B Super\-t
+Toggle scratchpad translator (trans \-I ja:en).
+.TP
+.B Super\-Shift\-u
+Toggle scratchpad units (units).
+.TP
+.B Super\-equal
+Increase gaps size.
+.TP
+.B Super\-minus
+Decrease gaps size.
+.TP
+.B Super\-b
+Toggle status bar on/off.
+.TP
+.B Super\-Escape
+Focus next monitor.
+.TP
+.B Super\-Left
+Tag previous monitor.
+.TP
+.B Super\-Right
+Tag next monitor.
+.TP
+.B Super\-F1
+Toggle floating state of focused window.
+.TP
+.B Control\-F11
+Toggle fullscreen state of focused window.
+.TP
+.B F13
+Reload .Xresources.
+.TP
+.B Super\-Shift\-Alt\-Control\-F12
+Reload .Xresources.
 .SS Mouse commands
 .TP
 .B Super\-Left click
