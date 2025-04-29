@@ -58,6 +58,7 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,    NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
 	{ "qutebrowser", NULL, NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
 	{ "Chromium", NULL,    NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
+	{ "Nsxiv",    NULL,    NULL,          0,        1,      -1,      0, 0,-1,-1},
 	{ NULL,       NULL,    "qute-editor", 0,        1,      -1,     -1,-1,-1,-1},
 	{ "mgba",     NULL,    NULL,          0,        1,      -1,     -1,-1,-1,-1},
 	{ NULL,       NULL,    "Graphics :)", 0,        1,      -1,     -1,-1,-1,-1},
@@ -131,7 +132,7 @@ static Key keys[] = {
 	{ MODKEY | ShiftMask, XK_space, cyclelayout, {.ui = -1}},
 	{ MODKEY | ShiftMask, XK_Return, togglescratch, {.ui = 0}},
 	{ MODKEY,             XK_apostrophe, togglescratch, {.ui = 1}},
-	{ MODKEY,             XK_t, togglescratch, {.ui = 2}},
+	{ MODKEY | ShiftMask, XK_t, togglescratch, {.ui = 2}},
 	{ MODKEY | ShiftMask, XK_u, togglescratch, {.ui = 3}},
 
 	{ MODKEY,             XK_equal, incrgaps, {.i = +3}},
@@ -141,10 +142,16 @@ static Key keys[] = {
 	{ MODKEY,             XK_Escape, focusmon, {.i = +1}},
 	{ MODKEY,             XK_Left, tagmon, {.i = -1}},
 	{ MODKEY,             XK_Right, tagmon, {.i = +1}},
-	{ 0,                  XK_F13, xrdb, {.v = NULL}},
 	{ MODKEY,             XK_F1, togglefloating, {0}},
-	{ 0,                  XK_F11, togglefullscreen, {0}},
-	{ MODKEY | ShiftMask | Mod1Mask | ControlMask, XK_F12, xrdb, {.v = NULL}},
+	{ ControlMask,        XK_F11, togglefullscreen, {0}},
+};
+
+/* signal definitions */
+/* signum must be greater than 0 */
+/* trigger signals using `xsetroot -name "fsignal:<signum>"` */
+static Signal signals[] = {
+	/* signum       function    argument  */
+	{ 1,            xrdb,      {.v = NULL} },
 };
 
 /* button definitions */
