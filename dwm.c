@@ -2431,8 +2431,7 @@ xrdb(const Arg *arg)
 	Monitor *m;
 	for (m = mons; m; m = m->next) {
 		for (c = m->clients; c; c = c->next)
-			if (ISVISIBLE(c))
-				XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
+			XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
 	}
 }
 
