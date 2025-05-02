@@ -203,7 +203,7 @@ static void drawbar(Monitor *m);
 static void drawbars(void);
 static void enternotify(XEvent *e);
 static void expose(XEvent *e);
-static int fake_signal(void);
+static int fakesignal(void);
 static void focus(Client *c);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
@@ -893,7 +893,7 @@ expose(XEvent *e)
 }
 
 int
-fake_signal(void)
+fakesignal(void)
 {
 	char fsignal[256];
 	char indicator[9] = "fsignal:";
@@ -1433,7 +1433,7 @@ propertynotify(XEvent *e)
 	XPropertyEvent *ev = &e->xproperty;
 
 	if ((ev->window == root) && (ev->atom == XA_WM_NAME)) {
-		if (!fake_signal())
+		if (!fakesignal())
 			updatestatus();
 	} else if (ev->state == PropertyDelete) {
 		return; /* ignore */
