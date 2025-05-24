@@ -1990,25 +1990,47 @@ void
 togglescratch(const Arg *arg)
 {
 	Client *c;
+	Monitor *m;
 	unsigned int found = 0;
 	unsigned int scratchtag = SPTAG(arg->ui);
+	unsigned int newtagset;
 	Arg sparg = {.v = scratchpads[arg->ui].cmd};
 
-	for (c = selmon->clients; c && !(found = c->tags & scratchtag); c = c->next);
-	if (found) {
-		unsigned int newtagset = selmon->tagset[selmon->seltags] ^ scratchtag;
+    /* First check all monitors for the scratch window */
+	for (m = mons; m && !found; m = m->next)
+		for (c = m->clients; c && !(found = c->tags & scratchtag); c = c->next);
+
+	if (!found) {
+		/* Create new scratch window if none exists */
+		selmon->tagset[selmon->seltags] |= scratchtag;
+		spawn(&sparg);
+		return;
+	}
+
+	/* If window exists but is on another monitor, move it to current monitor */
+	if (c->mon != selmon) {
+		/* Move the client to current monitor */
+		sendmon(c, selmon);
+		/* Ensure it has the scratch tag on new monitor */
+		c->tags = scratchtag;
+		/* Show the scratch tag on current monitor */
+		selmon->tagset[selmon->seltags] |= scratchtag;
+		focus(NULL);
+		arrange(selmon);
+	} else {
+		/* Toggle visibility on current monitor */
+		newtagset = selmon->tagset[selmon->seltags] ^ scratchtag;
 		if (newtagset) {
 			selmon->tagset[selmon->seltags] = newtagset;
 			focus(NULL);
 			arrange(selmon);
 		}
-		if (ISVISIBLE(c)) {
-			focus(c);
-			restack(selmon);
-		}
-	} else {
-		selmon->tagset[selmon->seltags] |= scratchtag;
-		spawn(&sparg);
+	}
+
+	/* If scratch window is visible, focus and restack it on the current monitor */
+	if (ISVISIBLE(c)) {
+		focus(c);
+		restack(selmon);
 	}
 }
 
