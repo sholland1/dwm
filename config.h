@@ -32,12 +32,14 @@ const char *spcmd1[] = { termpgm, "-t", "spterm", NULL };
 const char *spcmd2[] = { termpgm, "-t", "spcalc", "-e", "python", NULL };
 const char *spcmd3[] = { termpgm, "-t", "sptrans", "-e", "trans", "-I", "ja:en", NULL };
 const char *spcmd4[] = { termpgm, "-t", "spunits", "-e", "units", NULL };
+const char *spcmd5[] = { "gio", "launch", "/home/sholland/.local/share/applications/brave-cinhimbnkkaeohfgghhklpknlkffjgod-Default.desktop", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",  spcmd1},
 	{"spcalc",  spcmd2},
 	{"sptrans", spcmd3},
 	{"spunits", spcmd4},
+	{"YouTube Music", spcmd5},
 };
 
 /* tagging */
@@ -55,9 +57,10 @@ static const Rule rules[] = {
 	{ NULL,       NULL,    "spcalc",      SPTAG(1), 1,      -1,     -1,-1,-1,-1},
 	{ NULL,       NULL,    "sptrans",     SPTAG(2), 1,      -1,     -1,-1,-1,-1},
 	{ NULL,       NULL,    "spunits",     SPTAG(3), 1,      -1,     -1,-1,-1,-1},
-	{ "Firefox",  NULL,    NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
+	{ "Brave-browser",NULL,"YouTube Music",SPTAG(4),1,      -1,     -1,-1,-1,-1},
+	{ "Brave-browser",NULL,"Grok",        1 << 0,   0,       1,     -1,-1,-1,-1},
+	{ "firefox",  NULL,    NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
 	{ "qutebrowser", NULL, NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
-	{ "Chromium", NULL,    NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
 	{ "Nsxiv",    NULL,    NULL,          0,        1,      -1,      0, 0,-1,-1},
 	{ NULL,       NULL,    "qute-editor", 0,        1,      -1,     -1,-1,-1,-1},
 	{ "mgba",     NULL,    NULL,          0,        1,      -1,     -1,-1,-1,-1},
@@ -89,6 +92,7 @@ static const Layout layouts[] = {
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY, TAG) \
 	{ MODKEY,                           KEY, view,       { .ui = 1 << TAG } }, \
+	{ ControlMask | ShiftMask,          KEY, view,       { .ui = 1 << TAG } }, \
 	{ MODKEY | ControlMask,             KEY, toggleview, { .ui = 1 << TAG } }, \
 	{ MODKEY | ShiftMask,               KEY, tag,        { .ui = 1 << TAG } }, \
 	{ MODKEY | ControlMask | ShiftMask, KEY, toggletag,  { .ui = 1 << TAG } },
@@ -134,6 +138,7 @@ static Key keys[] = {
 	{ MODKEY,             XK_apostrophe, togglescratch, {.ui = 1}},
 	{ MODKEY | ShiftMask, XK_t, togglescratch, {.ui = 2}},
 	{ MODKEY | ShiftMask, XK_u, togglescratch, {.ui = 3}},
+	{ MODKEY            , XK_y, togglescratch, {.ui = 4}},
 
 	{ MODKEY,             XK_equal, incrgaps, {.i = +3}},
 	{ MODKEY,             XK_minus, incrgaps, {.i = -3}},

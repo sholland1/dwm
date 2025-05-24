@@ -1996,7 +1996,7 @@ togglescratch(const Arg *arg)
 	unsigned int newtagset;
 	Arg sparg = {.v = scratchpads[arg->ui].cmd};
 
-    /* First check all monitors for the scratch window */
+	/* First check all monitors for the scratch window */
 	for (m = mons; m && !found; m = m->next)
 		for (c = m->clients; c && !(found = c->tags & scratchtag); c = c->next);
 
