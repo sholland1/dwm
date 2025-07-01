@@ -59,6 +59,8 @@ static const Rule rules[] = {
 	{ NULL,       NULL,    "spunits",     SPTAG(3), 1,      -1,     -1,-1,-1,-1},
 	{ "Brave-browser",NULL,"YouTube Music",SPTAG(4),1,      -1,     -1,-1,-1,-1},
 	{ "Brave-browser",NULL,"Grok",        1 << 0,   0,       1,     -1,-1,-1,-1},
+	{ "Brave-browser",NULL,"Claude",      1 << 0,   0,       1,     -1,-1,-1,-1},
+	{ "Brave-browser",NULL,"ChatGPT",     1 << 0,   0,       1,     -1,-1,-1,-1},
 	{ "firefox",  NULL,    NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
 	{ "qutebrowser", NULL, NULL,          1 << 0,   0,       1,     -1,-1,-1,-1},
 	{ "Nsxiv",    NULL,    NULL,          0,        1,      -1,      0, 0,-1,-1},
