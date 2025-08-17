@@ -78,14 +78,14 @@ static const int resizehints = 1; /* 1 means respect size hints in tiled resizal
 #include "vanitygaps.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=", tile },	 /* Default: Master on left, slaves on right */
-	{ "TTT", bstack }, /* Master on top, slaves on bottom */
+	{ "[M]", monocle },	/* Default: All windows on top of eachother */
+	{ "[]=", tile },	/* Master on left, slaves on right */
 
-	{ "H[]", deck },	  /* Master on left, slaves in monocle-like mode on right */
-	{ "[M]", monocle }, /* All windows on top of eachother */
+	{ "TTT", bstack },	/* Master on top, slaves on bottom */
+	{ "H[]", deck },	/* Master on left, slaves in monocle-like mode on right */
 
-	{ "|M|", centeredmaster },		 /* Master in middle, slaves on sides */
-	{ ">M>", centeredfloatingmaster }, /* Same but master floats */
+	{ ">M>", centeredfloatingmaster },	/* Same but master floats */
+	{ "|M|", centeredmaster },		/* Master in middle, slaves on sides */
 
 	{ NULL, NULL },
 };

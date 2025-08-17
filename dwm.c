@@ -1631,12 +1631,8 @@ run(void)
 void
 runDefaults(void)
 {
-	Arg layout1 = {.v = &layouts[3]};
-	Arg monitor = {.i = +1};
-	Arg layout2 = {.v = &layouts[4]};
+	Arg layout1 = {.v = &layouts[5]};
 	setlayout(&layout1);
-	focusmon(&monitor);
-	setlayout(&layout2);
 }
 
 void
