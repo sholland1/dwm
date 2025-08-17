@@ -66,7 +66,9 @@ static const Rule rules[] = {
 	{ "Nsxiv",    NULL,    NULL,          0,        1,      -1,      0, 0,-1,-1},
 	{ NULL,       NULL,    "qute-editor", 0,        1,      -1,     -1,-1,-1,-1},
 	{ "mgba",     NULL,    NULL,          0,        1,      -1,     -1,-1,-1,-1},
+	{ "snes9x",   NULL,    NULL,          0,        1,      -1,     -1,-1,-1,-1},
 	{ NULL,       NULL,    "Graphics :)", 0,        1,      -1,     -1,-1,-1,-1},
+	{ "Xephyr",   NULL,    NULL,          0,        1,      -1,     1920-800-6,1080-600-6,-1,-1},
 	{ NULL,       NULL,    "fzf:",        0,        1,      -1,     -1,-1,-1,-1},
 	{ NULL,       NULL,    "fzf: system", 0,        1,      -1,     1920-220,20,200,200},
 };
